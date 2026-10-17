@@ -71,22 +71,43 @@ function createServer() {
     },
     async ({ token }) => {
       try {
+        let pairs: any[] = [];
         const dexUrl = `https://api.dexscreener.com/latest/dex/tokens/${encodeURIComponent(token)}`;
         const dexRes = await fetch(dexUrl, {
           signal: AbortSignal.timeout(4_000),
           redirect: "error",
         });
 
-        if (!dexRes.ok) throw new Error("DexScreener request failed");
-        const dexData = (await dexRes.json()) as any;
-        const pairs = dexData.pairs || [];
+        if (dexRes.ok) {
+          const dexData = (await dexRes.json()) as any;
+          if (Array.isArray(dexData.pairs) && dexData.pairs.length > 0) {
+            pairs = dexData.pairs;
+          }
+        }
+
+        // Fallback: If not found by token address, search by pair address or query
         if (pairs.length === 0) {
-          throw new Error(`No active trading pairs found for token: ${token}`);
+          const searchUrl = `https://api.dexscreener.com/latest/dex/search?q=${encodeURIComponent(token)}`;
+          const searchRes = await fetch(searchUrl, {
+            signal: AbortSignal.timeout(4_000),
+            redirect: "error",
+          });
+          if (searchRes.ok) {
+            const searchData = (await searchRes.json()) as any;
+            if (Array.isArray(searchData.pairs)) {
+              pairs = searchData.pairs;
+            }
+          }
+        }
+
+        if (pairs.length === 0) {
+          throw new Error(`No active trading pairs found for: ${token}`);
         }
 
         // Sort by liquidity
         const sorted = [...pairs].sort((a: any, b: any) => (b.liquidity?.usd ?? 0) - (a.liquidity?.usd ?? 0));
         const primary = sorted[0];
+        const actualTokenAddress = primary.baseToken?.address || token;
 
         const { score, confidence } = calculateConviction(primary);
         const priceUsd = primary.priceUsd ? parseFloat(primary.priceUsd) : 0;
@@ -101,8 +122,8 @@ function createServer() {
         try {
           const isBase = primary.chainId === "base";
           const secUrl = isBase
-            ? `https://api.gopluslabs.io/api/v1/token_security/8453?contract_addresses=${token.toLowerCase()}`
-            : `https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=${token}`;
+            ? `https://api.gopluslabs.io/api/v1/token_security/8453?contract_addresses=${actualTokenAddress.toLowerCase()}`
+            : `https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=${actualTokenAddress}`;
 
           const secRes = await fetch(secUrl, {
             signal: AbortSignal.timeout(3_000),
@@ -111,7 +132,7 @@ function createServer() {
 
           if (secRes.ok) {
             const secData = (await secRes.json()) as any;
-            const details = secData.result?.[token.toLowerCase()] || secData.result?.[token];
+            const details = secData.result?.[actualTokenAddress.toLowerCase()] || secData.result?.[actualTokenAddress];
             if (details) {
               isHoneypot = details.is_honeypot === "1" || details.non_transferable === "1";
               if (isHoneypot) {
