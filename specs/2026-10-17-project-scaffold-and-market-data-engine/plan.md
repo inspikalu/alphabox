@@ -24,6 +24,6 @@
 ---
 
 ## Group 4 — CLI Verification Runner
-- [ ] Task: Create `src/cli/verify-market.ts` enabling command-line testing of any Solana or Base token address (e.g. `--token <address>`) and outputting formatted JSON containing token symbol, price USD, liquidity, 24h volume, buy/sell ratio, and conviction score.
-- [ ] Task: Add npm script `"verify:market": "tsx src/cli/verify-market.ts"` in `package.json`.
-- [ ] **Verify**: `npx tsx src/cli/verify-market.ts --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` → expect exit code `0` and JSON output containing `"status":"success"` and `"convictionScore":`.
+- [x] Task: Create `src/cli/verify-market.ts` enabling command-line testing of any Solana or Base token address (e.g. `--token <address>`) and outputting formatted JSON containing token symbol, price USD, liquidity, 24h volume, buy/sell ratio, and conviction score.
+- [x] Task: Add npm script `"verify:market": "tsx src/cli/verify-market.ts"` in `package.json`.
+- [x] **Verify**: `npx tsx src/cli/verify-market.ts --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` → GOT: exit code 0, status: "success", convictionScore: 81 ✅
