@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import { config } from "./config.js";
 
 import { intelRouter } from "./routes/intel.js";
+import { vaultRouter } from "./routes/vault.js";
 
 export const app: express.Express = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/intel", intelRouter);
+app.use("/api/vault", vaultRouter);
 
 app.get("/health", (_req, res) => {
   res.status(200).json({

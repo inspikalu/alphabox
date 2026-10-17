@@ -8,9 +8,9 @@
 ---
 
 ## Group 2 — Vault Trade Execution API Route
-- [ ] Task: Create `src/routes/vault.ts` mounting `POST /api/vault/execute-trade` that parses `TradeOrderRequest`, checks vault policy limits, and returns a PayBox-compliant status envelope (`status: "success"` with signed transaction details when within policy limits, or `status: "pending_approval"` with an `approval_url` when policy limits are exceeded).
-- [ ] Task: Mount `vaultRouter` onto `app` in `src/server.ts` under `/api/vault`.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3004, async () => { const res = await fetch('http://localhost:3004/api/vault/execute-trade', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tokenIn: 'USDC', tokenOut: 'SOL', amountUsd: 10, slippagePercent: 0.5, network: 'solana' }) }); const d = await res.json(); s.close(); console.log('TRADE_STATUS:' + d.status); process.exit(d.status === 'success' ? 0 : 1); });"` → expect `TRADE_STATUS:success`.
+- [x] Task: Create `src/routes/vault.ts` mounting `POST /api/vault/execute-trade` that parses `TradeOrderRequest`, checks vault policy limits, and returns a PayBox-compliant status envelope (`status: "success"` with signed transaction details when within policy limits, or `status: "pending_approval"` with an `approval_url` when policy limits are exceeded).
+- [x] Task: Mount `vaultRouter` onto `app` in `src/server.ts` under `/api/vault`.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3004, async () => { const res = await fetch('http://localhost:3004/api/vault/execute-trade', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tokenIn: 'USDC', tokenOut: 'SOL', amountUsd: 10, slippagePercent: 0.5, network: 'solana' }) }); const d = await res.json(); s.close(); console.log('TRADE_STATUS:' + d.status); process.exit(d.status === 'success' ? 0 : 1); });"` → GOT: "TRADE_STATUS:success" ✅
 
 ---
 
