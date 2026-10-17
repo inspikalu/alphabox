@@ -1,9 +1,9 @@
 # Plan: PayBox Vault Scoped Execution & Manifest
 
 ## Group 1 — PayBox Vault Policy Validator & Trade Execution Types
-- [ ] Task: Create `src/types/vault.ts` defining Zod schemas and TypeScript interfaces for `TradeOrderRequest`, `VaultPolicyConfig`, `TradeExecutionResult`, and the PayBox MCP `ResultEnvelope` (`status: "success" | "pending_approval" | "denied" | "error"`).
-- [ ] Task: Create `src/services/vault-policy.ts` implementing `validateTradePolicy(order: TradeOrderRequest, policy?: Partial<VaultPolicyConfig>)` enforcing strict guardrails: max trade amount ($25.00), maximum slippage tolerance (1.5%), supported networks (`solana`, `base`), and valid token addresses.
-- [ ] **Verify**: `npx tsx -e "import { validateTradePolicy } from './src/services/vault-policy.ts'; const r = validateTradePolicy({ tokenIn: 'USDC', tokenOut: 'SOL', amountUsd: 15, slippagePercent: 1.0, network: 'solana' }); console.log('POLICY_VALID:' + r.allowed); process.exit(r.allowed ? 0 : 1);"` → expect `POLICY_VALID:true`.
+- [x] Task: Create `src/types/vault.ts` defining Zod schemas and TypeScript interfaces for `TradeOrderRequest`, `VaultPolicyConfig`, `TradeExecutionResult`, and the PayBox MCP `ResultEnvelope` (`status: "success" | "pending_approval" | "denied" | "error"`).
+- [x] Task: Create `src/services/vault-policy.ts` implementing `validateTradePolicy(order: TradeOrderRequest, policy?: Partial<VaultPolicyConfig>)` enforcing strict guardrails: max trade amount ($25.00), maximum slippage tolerance (1.5%), supported networks (`solana`, `base`), and valid token addresses.
+- [x] **Verify**: `npx tsx -e "import { validateTradePolicy } from './src/services/vault-policy.ts'; const r = validateTradePolicy({ tokenIn: 'USDC', tokenOut: 'SOL', amountUsd: 15, slippagePercent: 1.0, network: 'solana' }); console.log('POLICY_VALID:' + r.allowed); process.exit(r.allowed ? 0 : 1);"` → GOT: "POLICY_VALID:true" ✅
 
 ---
 
