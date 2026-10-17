@@ -1,10 +1,10 @@
 # Plan: x402 Micropayment Server Layer
 
 ## Group 1 — Express Server Setup & Configuration Layer
-- [ ] Task: Create `src/config.ts` loading and validating environment variables with Zod (`PORT`, `NODE_ENV`, `DEFAULT_CHAIN`, `SOLANA_PAYMENT_RECEIVER_ADDRESS`, `BASE_PAYMENT_RECEIVER_ADDRESS`, `SOLANA_USDC_MINT`, `SIMULATE_PAYMENTS`).
-- [ ] Task: Create `src/server.ts` configuring an Express application with JSON middleware, CORS, and a health check route `GET /health` returning `{ status: "ok", timestamp: string }`.
-- [ ] Task: Add npm script `"start": "tsx src/server.ts"` to `package.json`.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3001, () => { fetch('http://localhost:3001/health').then(r => r.json()).then(d => { s.close(); console.log('HEALTH_STATUS:' + d.status); process.exit(d.status === 'ok' ? 0 : 1); }); });"` → expect `HEALTH_STATUS:ok`.
+- [x] Task: Create `src/config.ts` loading and validating environment variables with Zod (`PORT`, `NODE_ENV`, `DEFAULT_CHAIN`, `SOLANA_PAYMENT_RECEIVER_ADDRESS`, `BASE_PAYMENT_RECEIVER_ADDRESS`, `SOLANA_USDC_MINT`, `SIMULATE_PAYMENTS`).
+- [x] Task: Create `src/server.ts` configuring an Express application with JSON middleware, CORS, and a health check route `GET /health` returning `{ status: "ok", timestamp: string }`.
+- [x] Task: Add npm script `"start": "tsx src/server.ts"` to `package.json`.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3001, () => { fetch('http://localhost:3001/health').then(r => r.json()).then(d => { s.close(); console.log('HEALTH_STATUS:' + d.status); process.exit(d.status === 'ok' ? 0 : 1); }); });"` → GOT: "HEALTH_STATUS:ok" ✅
 
 ---
 
