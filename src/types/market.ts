@@ -73,5 +73,25 @@ export interface MarketSignalReport {
   buySellRatio24h: number;
   convictionScore: number;
   signalConfidence: "VERY_HIGH" | "HIGH" | "MODERATE" | "LOW" | "CAUTION";
+  securityAudit?: TokenSecurityAudit;
   analyzedAt: string;
 }
+
+export const TokenSecurityAuditSchema = z.object({
+  tokenAddress: z.string(),
+  network: z.string(),
+  isHoneypot: z.boolean(),
+  buyTaxPercent: z.number().default(0),
+  sellTaxPercent: z.number().default(0),
+  isMintable: z.boolean().default(false),
+  isFreezable: z.boolean().default(false),
+  isMutableMetadata: z.boolean().default(false),
+  isOpenSource: z.boolean().default(true),
+  isProxy: z.boolean().default(false),
+  riskScore: z.number().min(0).max(100),
+  warnings: z.array(z.string()).default([]),
+  auditedAt: z.string()
+});
+
+export type TokenSecurityAudit = z.infer<typeof TokenSecurityAuditSchema>;
+

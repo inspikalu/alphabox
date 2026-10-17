@@ -1,10 +1,17 @@
 # Plan: Stretch Differentiator Features (S-1, S-2, S-3)
 
 ## Group 1 — GoPlus Deep Security & Rugcheck Module
-- [ ] Task: Create `src/types/security.ts` defining Zod schemas and TypeScript types for `TokenSecurityAudit` (honeypot, buy/sell taxes, mintable, mutable metadata, riskScore 0-100, warnings).
-- [ ] Task: Create `src/services/security.ts` querying GoPlus public endpoints for Base (`chainId=8453`) and Solana, computing a 0–100 safety score and warning flags.
-- [ ] Task: Update `src/services/market-engine.ts` to enrich `MarketSignalReport` with an optional `securityAudit` field and apply safety penalties to conviction if severe risks exist.
-- [ ] **Verify**: `npx tsx -e "import { checkTokenSecurity } from './src/services/security.ts'; const r = await checkTokenSecurity('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 'base'); console.log('SECURITY_CHECK:' + (typeof r.riskScore === 'number' && !r.isHoneypot)); process.exit(typeof r.riskScore === 'number' ? 0 : 1);"` → expect `SECURITY_CHECK:true`
+- [x] Task: Create `src/types/security.ts` defining Zod schemas and TypeScript types for `TokenSecurityAudit` (honeypot, buy/sell taxes, mintable, mutable metadata, riskScore 0-100, warnings). (Defined in `src/types/market.ts` and re-exported via `src/services/security.ts`)
+- [x] Task: Create `src/services/security.ts` querying GoPlus public endpoints for Base (`chainId=8453`) and Solana, computing a 0–100 safety score and warning flags.
+- [x] Task: Update `src/services/market-engine.ts` to enrich `MarketSignalReport` with an optional `securityAudit` field and apply safety penalties to conviction if severe risks exist.
+- [x] **Verify**: `npx tsx --input-type=module -e "import { checkTokenSecurity } from './src/services/security.ts'; const r = await checkTokenSecurity('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 'base'); console.log('SECURITY_CHECK:' + (typeof r.riskScore === 'number' && !r.isHoneypot)); process.exit(typeof r.riskScore === 'number' ? 0 : 1);"` → expect `SECURITY_CHECK:true`
+  - Evidence:
+    ```
+    $ npx tsx --input-type=module -e "import { checkTokenSecurity } from './src/services/security.ts'; const r = await checkTokenSecurity('0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 'base'); console.log('SECURITY_CHECK:' + (typeof r.riskScore === 'number' && !r.isHoneypot)); process.exit(typeof r.riskScore === 'number' ? 0 : 1);"
+    SECURITY_CHECK:true
+    Exit code: 0
+    ```
+
 
 ---
 
