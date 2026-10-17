@@ -1,0 +1,27 @@
+{
+  "name": "alphabox",
+  "version": "0.1.0",
+  "description": "x402-monetized crypto intelligence & scoped autonomous trading plugin for PayBox",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "verify:market": "tsx src/cli/verify-market.ts"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.99.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.8",
+    "ethers": "^6.17.0",
+    "express": "^5.3.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.8.0"
+  }
+}

@@ -1,11 +1,11 @@
 # Plan: Project Scaffold & Market Data Engine
 
 ## Group 1 — Project Initialization & TypeScript Configuration
-- [ ] Task: Create `package.json` with pinned dependencies (`express: ^5.3.0`, `cors: ^2.8.6`, `dotenv: ^18.0.8`, `zod: ^3.24.2`, `ethers: ^6.17.0`, `@solana/web3.js: ^1.99.0`, and devDependencies `typescript: ^5.8.0`, `tsx: ^4.23.15`, `@types/node: ^22.0.0`, `@types/express: ^5.0.6`, `@types/cors: ^2.8.19`).
-- [ ] Task: Create `tsconfig.json` with strict mode, target `ES2022`, module resolution `NodeNext`, and source directories configured.
-- [ ] Task: Create `.env.example` documenting default environment configuration (`PORT=3000`, `NODE_ENV=development`, `DEFAULT_CHAIN=solana`).
-- [ ] Task: Install project dependencies using `npm install`.
-- [ ] **Verify**: `npm run typecheck || npx tsc --noEmit` → expect exit code `0` with no type errors.
+- [x] Task: Create `package.json` with pinned dependencies (`express: ^5.3.0`, `cors: ^2.8.6`, `dotenv: ^18.0.8`, `zod: ^3.24.2`, `ethers: ^6.17.0`, `@solana/web3.js: ^1.99.0`, and devDependencies `typescript: ^5.8.0`, `tsx: ^4.23.15`, `@types/node: ^22.0.0`, `@types/express: ^5.0.6`, `@types/cors: ^2.8.19`).
+- [x] Task: Create `tsconfig.json` with strict mode, target `ES2022`, module resolution `NodeNext`, and source directories configured.
+- [x] Task: Create `.env.example` documenting default environment configuration (`PORT=3000`, `NODE_ENV=development`, `DEFAULT_CHAIN=solana`).
+- [x] Task: Install project dependencies using `npm install`.
+- [x] **Verify**: `npm run typecheck || npx tsc --noEmit` → GOT: exit code 0, 0 type errors ✅
 
 ---
 
