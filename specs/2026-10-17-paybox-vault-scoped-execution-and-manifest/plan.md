@@ -15,7 +15,7 @@
 ---
 
 ## Group 3 — PayBox Plugin Manifest & OpenAPI Specification
-- [ ] Task: Create `src/manifest.ts` generating `paybox-plugin.json` and OpenAPI 3.1 specification describing AlphaBox metadata, x402 payment requirements, and tools (`/api/intel/signal`, `/api/vault/execute-trade`) compliant with PayBox marketplace discovery standards.
-- [ ] Task: Mount `GET /paybox-plugin.json` and `GET /openapi.json` routes onto `app` in `src/server.ts`.
-- [ ] Task: Write static `paybox-plugin.json` and `openapi.json` to the project root directory.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3005, async () => { const r1 = await fetch('http://localhost:3005/paybox-plugin.json'); const d1 = await r1.json(); const r2 = await fetch('http://localhost:3005/openapi.json'); const d2 = await r2.json(); s.close(); console.log('MANIFEST_VALID:' + (d1.name === 'AlphaBox' && Boolean(d2.paths['/api/vault/execute-trade']))); process.exit(d1.name === 'AlphaBox' ? 0 : 1); });"` → expect `MANIFEST_VALID:true`.
+- [x] Task: Create `src/manifest.ts` generating `paybox-plugin.json` and OpenAPI 3.1 specification describing AlphaBox metadata, x402 payment requirements, and tools (`/api/intel/signal`, `/api/vault/execute-trade`) compliant with PayBox marketplace discovery standards.
+- [x] Task: Mount `GET /paybox-plugin.json` and `GET /openapi.json` routes onto `app` in `src/server.ts`.
+- [x] Task: Write static `paybox-plugin.json` and `openapi.json` to the project root directory.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3005, async () => { const r1 = await fetch('http://localhost:3005/paybox-plugin.json'); const d1 = await r1.json(); const r2 = await fetch('http://localhost:3005/openapi.json'); const d2 = await r2.json(); s.close(); console.log('MANIFEST_VALID:' + (d1.name === 'AlphaBox' && Boolean(d2.paths['/api/vault/execute-trade']))); process.exit(d1.name === 'AlphaBox' ? 0 : 1); });"` → GOT: "MANIFEST_VALID:true" ✅

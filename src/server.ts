@@ -5,6 +5,7 @@ import { config } from "./config.js";
 
 import { intelRouter } from "./routes/intel.js";
 import { vaultRouter } from "./routes/vault.js";
+import { PAYBOX_PLUGIN_MANIFEST, OPENAPI_SPEC } from "./manifest.js";
 
 export const app: express.Express = express();
 
@@ -13,6 +14,14 @@ app.use(express.json());
 
 app.use("/api/intel", intelRouter);
 app.use("/api/vault", vaultRouter);
+
+app.get("/paybox-plugin.json", (_req, res) => {
+  res.status(200).json(PAYBOX_PLUGIN_MANIFEST);
+});
+
+app.get("/openapi.json", (_req, res) => {
+  res.status(200).json(OPENAPI_SPEC);
+});
 
 app.get("/health", (_req, res) => {
   res.status(200).json({
