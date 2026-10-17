@@ -10,9 +10,9 @@
 ---
 
 ## Group 2 — DexScreener Market Data Service
-- [ ] Task: Create `src/types/market.ts` defining Zod schemas and TypeScript interfaces for `TokenPairData`, `DexScreenerResponse`, and `MarketSignalReport`.
-- [ ] Task: Create `src/services/dexscreener.ts` implementing `fetchTokenPairs(tokenAddress: string)` using Node native `fetch` to query `https://api.dexscreener.com/latest/dex/tokens/:tokenAddress` and return validated pairs for Solana and Base tokens.
-- [ ] **Verify**: `npx tsx -e "import { fetchTokenPairs } from './src/services/dexscreener.js'; fetchTokenPairs('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(p => { if (!p || p.length === 0) process.exit(1); console.log('PAIRS_FOUND:' + (p.length > 0)); }).catch(() => process.exit(1));"` → expect `PAIRS_FOUND:true`.
+- [x] Task: Create `src/types/market.ts` defining Zod schemas and TypeScript interfaces for `TokenPairData`, `DexScreenerResponse`, and `MarketSignalReport`.
+- [x] Task: Create `src/services/dexscreener.ts` implementing `fetchTokenPairs(tokenAddress: string)` using Node native `fetch` to query `https://api.dexscreener.com/latest/dex/tokens/:tokenAddress` and return validated pairs for Solana and Base tokens.
+- [x] **Verify**: `npx tsx -e "import { fetchTokenPairs } from './src/services/dexscreener.ts'; fetchTokenPairs('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(p => { if (!p || p.length === 0) process.exit(1); console.log('PAIRS_FOUND:' + (p.length > 0)); }).catch(() => process.exit(1));"` → GOT: "PAIRS_FOUND:true" ✅ (Attempt 1: FAILED on .js module resolution in tsx eval; Attempt 2: PASSED with .ts extension)
 
 ---
 
