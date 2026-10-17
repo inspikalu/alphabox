@@ -20,6 +20,6 @@
 ---
 
 ## Group 3 — Core Merge Gate & Clean Lifecycle Verification
-- [ ] Task: Run full regression check across all endpoints (`/health`, `/paybox-plugin.json`, `/openapi.json`, `/api/intel/signal`, `/api/vault/execute-trade`).
-- [ ] Task: Verify clean server lifecycle management, ensuring graceful shutdown without orphaned background processes or port binding leaks.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3009, async () => { const h = await fetch('http://localhost:3009/health').then(r => r.json()); const m = await fetch('http://localhost:3009/paybox-plugin.json').then(r => r.json()); s.close(); console.log('REGRESSION_CHECK:' + (h.status === 'ok' && m.name === 'AlphaBox')); process.exit(h.status === 'ok' ? 0 : 1); });"` → expect `REGRESSION_CHECK:true`
+- [x] Task: Run full regression check across all endpoints (`/health`, `/paybox-plugin.json`, `/openapi.json`, `/api/intel/signal`, `/api/vault/execute-trade`).
+- [x] Task: Verify clean server lifecycle management, ensuring graceful shutdown without orphaned background processes or port binding leaks.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3009, async () => { const h = await fetch('http://localhost:3009/health').then(r => r.json()); const m = await fetch('http://localhost:3009/paybox-plugin.json').then(r => r.json()); s.close(); console.log('REGRESSION_CHECK:' + (h.status === 'ok' && m.name === 'AlphaBox')); process.exit(h.status === 'ok' ? 0 : 1); });"` → GOT: "REGRESSION_CHECK:true" ✅
