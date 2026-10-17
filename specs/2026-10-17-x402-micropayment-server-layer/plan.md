@@ -9,9 +9,9 @@
 ---
 
 ## Group 2 — x402 Payment Types & Middleware Implementation
-- [ ] Task: Create `src/types/x402.ts` defining Zod schemas and TypeScript interfaces for `PaymentRequirements`, `PaymentInvoice`, `PaymentProof`, and `X402Headers` compliant with x402 standard and PayBox `accepts` parameter schema.
-- [ ] Task: Create `src/middleware/x402.ts` implementing `x402PaymentRequired` middleware that checks for incoming payment proofs (`x-payment` or `Authorization: Bearer <proof>`), returns `HTTP 402 Payment Required` with `x402-payment-required: true` header and payment invoice payload when unpaid, and validates authorized requests.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3002, () => { fetch('http://localhost:3002/api/intel/signal?token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(r => { s.close(); console.log('HTTP_STATUS:' + r.status + ',HEADER:' + r.headers.get('x402-payment-required')); process.exit(r.status === 402 ? 0 : 1); }); });"` → expect `HTTP_STATUS:402,HEADER:true`.
+- [x] Task: Create `src/types/x402.ts` defining Zod schemas and TypeScript interfaces for `PaymentRequirements`, `PaymentInvoice`, `PaymentProof`, and `X402Headers` compliant with x402 standard and PayBox `accepts` parameter schema.
+- [x] Task: Create `src/middleware/x402.ts` implementing `x402PaymentRequired` middleware that checks for incoming payment proofs (`x-payment` or `Authorization: Bearer <proof>`), returns `HTTP 402 Payment Required` with `x402-payment-required: true` header and payment invoice payload when unpaid, and validates authorized requests.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; const s = app.listen(3002, () => { fetch('http://localhost:3002/api/intel/signal?token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(r => { s.close(); console.log('HTTP_STATUS:' + r.status + ',HEADER:' + r.headers.get('x402-payment-required')); process.exit(r.status === 402 ? 0 : 1); }); });"` → GOT: "HTTP_STATUS:402,HEADER:true" ✅
 
 ---
 
