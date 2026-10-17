@@ -30,6 +30,42 @@
 ---
 
 ## Group 3 — Interactive Visual Demo Runner & NPM Script
-- [ ] Task: Create `src/cli/demo-runner.ts` providing an interactive or cinematic CLI presentation with ASCII banner, colorized conviction meter (`[████████░░]`), live x402 payment handshake, GoPlus security breakdown, and PayBox vault execution receipt.
-- [ ] Task: Add `"demo": "tsx src/cli/demo-runner.ts"` to `package.json`.
-- [ ] **Verify**: `npm run demo -- --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v --network solana` → expect output containing `DEMO_RUN_COMPLETE` and exit code 0
+- [x] Task: Create `src/cli/demo-runner.ts` providing an interactive or cinematic CLI presentation with ASCII banner, colorized conviction meter (`[████████░░]`), live x402 payment handshake, GoPlus security breakdown, and PayBox vault execution receipt.
+- [x] Task: Add `"demo": "tsx src/cli/demo-runner.ts"` to `package.json`.
+- [x] **Verify**: `npm run demo -- --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v --network solana` → expect output containing `DEMO_RUN_COMPLETE` and exit code 0
+  - Evidence:
+    ```
+    $ npm run demo -- --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v --network solana
+
+    > alphabox@0.1.0 demo
+    > tsx src/cli/demo-runner.ts --token EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v --network solana
+
+    [Step 1/5] Token Discovery & x402 Handshake
+      Target Token:  EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v (SOLANA)
+      ✓ HTTP 402 Received: Access to AlphaBox real-time market intelligence requires a micropayment of $0.01 USDC.
+      Payment Rails:    solana:devnet (USDC $0.01), eip155:8453 (USDC $0.01)
+
+    [Step 2/5] Autonomous x402 Micropayment Settlement
+      Settling $0.01 USDC micro-invoice via non-custodial wallet...
+      ✓ Payment Verified! Market intelligence payload unlocked.
+
+    [Step 3/5] Real-Time Market Intelligence
+      Asset:            Pump (PUMP)
+      Primary DEX:      pumpswap on solana
+      Conviction Meter: [██████████████████░░░░░░] 74/100 [HIGH]
+
+    [Step 4/5] GoPlus Contract Security & Rugcheck Audit
+      Honeypot Check:   CLEAN (Freely Tradable)
+      Risk Gauge:       [███████████████████░░░░░] 80/100 Safety Score
+
+    [Step 5/5] PayBox Vault Autonomous Trade Execution
+      Policy Rule:      Max Autonomous Limit = $25.00 USD
+      Requested Trade:  Swap $15 USD -> PUMP
+      ✓ TRADE EXECUTED SUCCESSFULLY
+        Autonomous Auth:    true
+        Execution Network:  solana
+
+    DEMO_RUN_COMPLETE
+    Exit code: 0
+    ```
+
