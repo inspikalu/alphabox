@@ -8,7 +8,8 @@
     "start": "tsx src/server.ts",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "verify:market": "tsx src/cli/verify-market.ts"
+    "verify:market": "tsx src/cli/verify-market.ts",
+    "verify:e2e": "tsx src/cli/verify-e2e.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.99.0",

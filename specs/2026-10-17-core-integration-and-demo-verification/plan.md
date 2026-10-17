@@ -8,14 +8,14 @@
 ---
 
 ## Group 2 — Multi-Network E2E Verification Runner & NPM Script
-- [ ] Task: Create `src/cli/verify-e2e.ts` implementing a structured integration runner that tests the full 5-step agent loop across both Solana and Base tokens:
+- [x] Task: Create `src/cli/verify-e2e.ts` implementing a structured integration runner that tests the full 5-step agent loop across both Solana and Base tokens:
   1. Discovery: Probes `/api/intel/signal` and extracts HTTP 402 payment requirements.
   2. Negotiation: Selects appropriate payment network (`solana:devnet` or `eip155:8453`).
   3. Settlement: Supplies payment token (`x-payment: simulated_valid_payment_proof`).
   4. Delivery: Receives live DexScreener market report and verifies 0–100 conviction score.
   5. Scoped Trade Execution: Submits trade within limit ($10) $\rightarrow$ verifies `status: "success"`; submits trade over limit ($50) $\rightarrow$ verifies `status: "pending_approval"` with passkey `approval_url`.
-- [ ] Task: Update `package.json` to add `"verify:e2e": "tsx src/cli/verify-e2e.ts"`.
-- [ ] **Verify**: `npm run verify:e2e` → expect output containing `ALL_E2E_CHECKS_PASSED` and exit code 0
+- [x] Task: Update `package.json` to add `"verify:e2e": "tsx src/cli/verify-e2e.ts"`.
+- [x] **Verify**: `npm run verify:e2e` → GOT: "ALL_E2E_CHECKS_PASSED" (exit code 0) ✅
 
 ---
 
