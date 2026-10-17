@@ -16,9 +16,16 @@
 ---
 
 ## Group 2 — Automated Stop-Loss Watchdog Service
-- [ ] Task: Create `src/services/watchdog.ts` implementing `evaluateStopLoss(currentPrice, entryPrice, stopLossPercentage)` and `createEmergencyExitOrder(tokenIn, tokenOut, amountUsd, network)`.
-- [ ] Task: Add test coverage ensuring stop-loss triggers when price declines exceed the threshold (e.g. -10%), generating a compliant PayBox emergency exit `TradeOrderRequest`.
-- [ ] **Verify**: `npx tsx -e "import { evaluateStopLoss } from './src/services/watchdog.ts'; const r1 = evaluateStopLoss(95, 100, 10); const r2 = evaluateStopLoss(88, 100, 10); console.log('WATCHDOG_SAFE:' + !r1.triggered + ',WATCHDOG_TRIGGER:' + r2.triggered); process.exit(!r1.triggered && r2.triggered ? 0 : 1);"` → expect `WATCHDOG_SAFE:true,WATCHDOG_TRIGGER:true`
+- [x] Task: Create `src/services/watchdog.ts` implementing `evaluateStopLoss(currentPrice, entryPrice, stopLossPercentage)` and `createEmergencyExitOrder(tokenIn, tokenOut, amountUsd, network)`.
+- [x] Task: Add test coverage ensuring stop-loss triggers when price declines exceed the threshold (e.g. -10%), generating a compliant PayBox emergency exit `TradeOrderRequest`.
+- [x] **Verify**: `npx tsx --input-type=module -e "import { evaluateStopLoss } from './src/services/watchdog.ts'; const r1 = evaluateStopLoss(95, 100, 10); const r2 = evaluateStopLoss(88, 100, 10); console.log('WATCHDOG_SAFE:' + !r1.triggered + ',WATCHDOG_TRIGGER:' + r2.triggered); process.exit(!r1.triggered && r2.triggered ? 0 : 1);"` → expect `WATCHDOG_SAFE:true,WATCHDOG_TRIGGER:true`
+  - Evidence:
+    ```
+    $ npx tsx --input-type=module -e "import { evaluateStopLoss } from './src/services/watchdog.ts'; const r1 = evaluateStopLoss(95, 100, 10); const r2 = evaluateStopLoss(88, 100, 10); console.log('WATCHDOG_SAFE:' + !r1.triggered + ',WATCHDOG_TRIGGER:' + r2.triggered); process.exit(!r1.triggered && r2.triggered ? 0 : 1);"
+    WATCHDOG_SAFE:true,WATCHDOG_TRIGGER:true
+    Exit code: 0
+    ```
+
 
 ---
 
