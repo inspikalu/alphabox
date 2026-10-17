@@ -16,6 +16,6 @@
 ---
 
 ## Group 3 — Protected Intelligence Signal Route & Verification
-- [ ] Task: Create `src/routes/intel.ts` mounting `GET /api/intel/signal` behind `x402PaymentRequired` middleware, accepting `token` query parameter, delegating to `analyzeToken(token)`, and returning the `MarketSignalReport`.
-- [ ] Task: Mount `intelRouter` onto `app` in `src/server.ts` under `/api/intel`.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; process.env.SIMULATE_PAYMENTS = 'true'; const s = app.listen(3003, () => { fetch('http://localhost:3003/api/intel/signal?token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', { headers: { 'x-payment': 'simulated_valid_payment_proof' } }).then(r => r.json()).then(d => { s.close(); console.log('SIGNAL_RECEIVED:' + (d.status === 'success' && typeof d.report?.convictionScore === 'number')); process.exit(d.status === 'success' ? 0 : 1); }); });"` → expect `SIGNAL_RECEIVED:true`.
+- [x] Task: Create `src/routes/intel.ts` mounting `GET /api/intel/signal` behind `x402PaymentRequired` middleware, accepting `token` query parameter, delegating to `analyzeToken(token)`, and returning the `MarketSignalReport`.
+- [x] Task: Mount `intelRouter` onto `app` in `src/server.ts` under `/api/intel`.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; process.env.SIMULATE_PAYMENTS = 'true'; const s = app.listen(3003, () => { fetch('http://localhost:3003/api/intel/signal?token=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', { headers: { 'x-payment': 'simulated_valid_payment_proof' } }).then(r => r.json()).then(d => { s.close(); console.log('SIGNAL_RECEIVED:' + (d.status === 'success' && typeof d.report?.convictionScore === 'number')); process.exit(d.status === 'success' ? 0 : 1); }); });"` → GOT: "SIGNAL_RECEIVED:true" ✅

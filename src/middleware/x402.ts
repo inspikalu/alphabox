@@ -17,7 +17,7 @@ export function x402PaymentRequired(req: Request, res: Response, next: NextFunct
 
   // Verification logic
   if (paymentToken) {
-    if (config.SIMULATE_PAYMENTS) {
+    if (config.SIMULATE_PAYMENTS || process.env.SIMULATE_PAYMENTS === "true") {
       // In simulated/test mode, accept non-empty token
       (req as any).paymentProof = {
         proof: paymentToken,
