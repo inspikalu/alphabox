@@ -17,9 +17,9 @@
 ---
 
 ## Group 3 — Deterministic Conviction & Momentum Scorer
-- [ ] Task: Create `src/services/scorer.ts` implementing `calculateConvictionScore(pairData: TokenPairData)` to compute a deterministic 0–100 score based on liquidity depth, volume-to-liquidity ratio, buy/sell transaction momentum, and 1h/24h price trend.
-- [ ] Task: Create `src/services/market-engine.ts` implementing `analyzeToken(tokenAddress: string)` that coordinates fetching token pair data from `DexScreenerService`, filters for the primary pool by liquidity, and computes the `MarketSignalReport`.
-- [ ] **Verify**: `npx tsx -e "import { analyzeToken } from './src/services/market-engine.js'; analyzeToken('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(r => { if (typeof r.convictionScore !== 'number' || r.convictionScore < 0 || r.convictionScore > 100) process.exit(1); console.log('SCORE_VALID:' + (r.convictionScore >= 0 && r.convictionScore <= 100)); }).catch(() => process.exit(1));"` → expect `SCORE_VALID:true`.
+- [x] Task: Create `src/services/scorer.ts` implementing `calculateConvictionScore(pairData: TokenPairData)` to compute a deterministic 0–100 score based on liquidity depth, volume-to-liquidity ratio, buy/sell transaction momentum, and 1h/24h price trend.
+- [x] Task: Create `src/services/market-engine.ts` implementing `analyzeToken(tokenAddress: string)` that coordinates fetching token pair data from `DexScreenerService`, filters for the primary pool by liquidity, and computes the `MarketSignalReport`.
+- [x] **Verify**: `npx tsx -e "import { analyzeToken } from './src/services/market-engine.ts'; analyzeToken('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(r => { if (typeof r.convictionScore !== 'number' || r.convictionScore < 0 || r.convictionScore > 100) process.exit(1); console.log('SCORE_VALID:' + (r.convictionScore >= 0 && r.convictionScore <= 100)); }).catch(() => process.exit(1));"` → GOT: "SCORE_VALID:true" ✅
 
 ---
 
