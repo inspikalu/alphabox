@@ -1,9 +1,9 @@
 # Plan: Core Integration & Demo Verification
 
 ## Group 1 — Autonomous Agent Client Module
-- [ ] Task: Create `src/services/agent-client.ts` defining `AgentClient` with methods: `probeIntel(baseUrl, tokenAddress)`, `settleAndFetchIntel(baseUrl, tokenAddress, paymentProof)`, and `executeVaultTrade(baseUrl, order)`.
-- [ ] Task: Implement response validation in `src/services/agent-client.ts` to ensure received payloads conform to `PaymentInvoice`, `MarketSignalReport`, and PayBox `ResultEnvelope` Zod schemas.
-- [ ] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; import { AgentClient } from './src/services/agent-client.ts'; process.env.SIMULATE_PAYMENTS = 'true'; const s = app.listen(3006, async () => { const client = new AgentClient('http://localhost:3006'); const probe = await client.probeIntel('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'); const intel = await client.settleAndFetchIntel('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 'simulated_proof'); s.close(); console.log('PROBE_402:' + probe.isPaymentRequired + ',INTEL_SUCCESS:' + (intel.status === 'success')); process.exit(probe.isPaymentRequired && intel.status === 'success' ? 0 : 1); });"` → expect `PROBE_402:true,INTEL_SUCCESS:true`
+- [x] Task: Create `src/services/agent-client.ts` defining `AgentClient` with methods: `probeIntel(baseUrl, tokenAddress)`, `settleAndFetchIntel(baseUrl, tokenAddress, paymentProof)`, and `executeVaultTrade(baseUrl, order)`.
+- [x] Task: Implement response validation in `src/services/agent-client.ts` to ensure received payloads conform to `PaymentInvoice`, `MarketSignalReport`, and PayBox `ResultEnvelope` Zod schemas.
+- [x] **Verify**: `npx tsx -e "import { app } from './src/server.ts'; import { AgentClient } from './src/services/agent-client.ts'; process.env.SIMULATE_PAYMENTS = 'true'; const s = app.listen(3006, async () => { const client = new AgentClient('http://localhost:3006'); const probe = await client.probeIntel('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'); const intel = await client.settleAndFetchIntel('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 'simulated_proof'); s.close(); console.log('PROBE_402:' + probe.isPaymentRequired + ',INTEL_SUCCESS:' + (intel.status === 'success')); process.exit(probe.isPaymentRequired && intel.status === 'success' ? 0 : 1); });"` → GOT: "PROBE_402:true,INTEL_SUCCESS:true" ✅
 
 ---
 
